@@ -85,6 +85,9 @@ DIST_ARCHIVE := $(DIST_NAME).$(ARCHIVE_EXTENSION)
 
 all: $(TARGET)
 
+runtest: $(TARGET)
+	./mklittlefs -b 512 -r 16 -e -1 -p 256 -s 131072 -c input /tmp/output
+
 dist: $(DIST_ARCHIVE)
 
 $(DIST_ARCHIVE): $(TARGET) $(DIST_DIR)

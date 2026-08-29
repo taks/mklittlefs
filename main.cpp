@@ -93,6 +93,17 @@ int lfs_flash_read(const struct lfs_config *c, lfs_block_t block, lfs_off_t off,
 
 int lfs_flash_prog(const struct lfs_config *c, lfs_block_t block, lfs_off_t off, const void *buffer, lfs_size_t size)
 {
+  std::cout << block << " " << off << " " << size << std::endl;
+  // std::cout << size << std::endl;
+  #if 1
+  auto ary = static_cast<const uint8_t*>(buffer);
+  for (lfs_size_t i = 0; i < size; i++)
+  {
+    std::printf("%02X ", ary[i]);
+  }
+  std::cout << std::endl;
+  #endif
+
   memcpy(&s_flashmem[0] + block * c->block_size + off, buffer, size);
   return 0;
 }
